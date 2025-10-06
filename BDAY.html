@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Arial", sans-serif;
+      background: url("file:///C:/Users/harsh/OneDrive/Pictures/Camera%20Roll/profile.jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 107, 157, 0.4),
+        rgba(196, 69, 105, 0.4),
+        rgba(248, 181, 0, 0.4),
+        rgba(254, 202, 87, 0.4)
+      );
+      background-size: 400% 400%;
+      animation: gradientShift 6s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .title {
+      font-size: 4rem;
+      color: white;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      animation: bounce 2s infinite, colorChange 3s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
+    }
+
+    @keyframes colorChange {
+      0% { color: #fff; }
+      25% { color: #ffeb3b; }
+      50% { color: #ff9800; }
+      75% { color: #e91e63; }
+      100% { color: #fff; }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+      animation: fadeInUp 2s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cake-container {
+      font-size: 6rem;
+      margin: 30px 0;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .cake-container:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .music-section {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .music-btn, .msg-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.4rem;
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      text-align: center;
+      line-height: 50px;
+      text-decoration: none;
+    }
+
+    .music-btn:hover, .msg-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .title { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="birthdayMusic" autoplay loop>
+    <source src="C:\Users\harsh\Downloads\38833FF26BA1D.UnigramPreview_g9c9v27vpyspw!App\winter1\winter1\music\Teri Jhuki Nazar Murder 3-(Mr-Jat.in).mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music + Message Section -->
+  <div class="music-section">
+    <button id="musicToggle" class="music-btn">🔊</button>
+    <a href="message.html" class="msg-btn" title="Sweet Message">💌</a>
+  </div>
+
+  <div class="container">
+    <h1 class="title">🎉HAPPY BIRTHDAY!🎉</h1>
+    <p class="subtitle">Let's Celebrate Your Special Day!</p>
+    <div class="cake-container" onclick="blowCandles()"></div>
+  </div>
+
+  <script>
+    const music = document.getElementById("birthdayMusic");
+    const musicToggle = document.getElementById("musicToggle");
+    let isPlaying = true;
+
+    musicToggle.addEventListener("click", () => {
+      if (isPlaying) {
+        music.pause();
+        musicToggle.textContent = "🔇";
+      } else {
+        music.play();
+        musicToggle.textContent = "🔊";
+      }
+      isPlaying = !isPlaying;
+    });
+
+    function blowCandles() {
+      const cake = document.querySelector(".cake-container");
+      cake.innerHTML = "";
+      cake.style.transform = "scale(1.2)";
+      setTimeout(() => { cake.style.transform = "scale(1)"; }, 1000);
+    }
+
+    function createFloatingElement() {
+      const element = document.createElement("div");
+      element.className = "floating-element";
+      const balloons = ["🎈", "🎆", "✨", "🌟"];
+      element.innerHTML = balloons[Math.floor(Math.random() * balloons.length)];
+      element.style.left = Math.random() * 100 + "%";
+      element.style.animationDelay = Math.random() * 2 + "s";
+      element.style.animationDuration = Math.random() * 10 + 10 + "s";
+      document.body.appendChild(element);
+      setTimeout(() => element.remove(), 15000);
+    }
+
+    setInterval(createFloatingElement, 800);
+    for (let i = 0; i < 10; i++) setTimeout(createFloatingElement, i * 200);
+
+    document.addEventListener("click", () => {
+      if (music.paused && isPlaying) {
+        music.play().catch(() => console.log("Autoplay prevented"));
+      }
+    }, { once: true });
+  </script>
+</body>
+</html>
