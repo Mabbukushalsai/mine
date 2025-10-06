@@ -13,9 +13,13 @@
 
         body {
             font-family: "Arial", sans-serif;
-            background: url("unnamed.jpg") no-repeat center center fixed;
+            background-image: url("unnamed.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
             background-size: cover;
-            min-height: 100vh;
+            background-attachment: fixed; /* keeps it fixed when scrolling */
+            min-height: 100%;
+            width: 100%;
             overflow-x: hidden;
             position: relative;
             animation: fadeIn 2s ease-in;
@@ -265,6 +269,7 @@ Edho Kotha ga untundhi ani try cheysa niku nachi theya happy , Hope ni life ani 
 </body>
 
 </html>
+
 
 
 
