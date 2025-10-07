@@ -199,8 +199,24 @@
             </div>
         </div>
     </div>
-
+    
     <script>
+            const music = document.getElementById("bg-music");
+            const toggleBtn = document.getElementById("music-toggle");
+            let isPlaying = false;
+
+            toggleBtn.addEventListener("click", () => {
+              if (isPlaying) {
+                music.pause();
+                toggleBtn.textContent = "🔇 Music Off";
+                isPlaying = false;
+              } else {
+                music.play();
+                toggleBtn.textContent = "🔊 Music On";
+                isPlaying = true;
+              }
+            });
+
         // Typewriter effect
         const message = `🎉Happy Birthday Santhoshi 🎉!
 Edho Kotha ga untundhi ani try cheysa niku nachi theya happy , Hope ni life ani baga jarugthunai ani and Best Wishes from my side that u will be shine in ur life with lots of happy moments.! 🎂🎉`;
@@ -272,6 +288,7 @@ Edho Kotha ga untundhi ani try cheysa niku nachi theya happy , Hope ni life ani 
 </body>
 
 </html>
+
 
 
 
